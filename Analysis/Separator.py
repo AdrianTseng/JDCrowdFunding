@@ -5,8 +5,10 @@ from .__init__ import path, USER_DICT, STOPWORDS
 class Separator:
 
     def __init__(self, parallel=False):
-        self.parallel = parallel
         self.stopwords = open(STOPWORDS, 'r', encoding="utf-8").read().splitlines()
+        extended = [each for each in ['', ' '] if each not in self.stopwords]
+        map(self.stopwords.append, extended)
+        self.parallel = parallel
 
     def initialization(self):
         jieba.enable_parallel() if self.parallel else jieba.disable_parallel()

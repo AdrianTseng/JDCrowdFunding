@@ -11,7 +11,7 @@ class Analyser:
 
     def tf_idf(self, sentences):
         ori = sentences
-        if len(sentences) > 0 and type(sentences[0]) is str:
+        if len(sentences) > 0 and type(sentences[0]) is not str:
             ori = [" ".join(each) for each in sentences]
 
         return self.transformer.fit_transform(self.vectorizer.fit_transform(ori))

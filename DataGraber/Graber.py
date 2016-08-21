@@ -12,13 +12,13 @@ class Graber:
         return json.loads(bytes(obj[0]).decode('utf-8'))
 
     def grab(self):
-        import  psycopg2
+        import psycopg2
         import pandas as pd
 
         offset = 0
-        conn = psycopg2.connect(database = DATABASE,
-                                host = HOST,
-                                user = USER,
+        conn = psycopg2.connect(database=DATABASE,
+                                host=HOST,
+                                user=USER,
                                 password=PASSWORD)
         cur = conn.cursor()
 

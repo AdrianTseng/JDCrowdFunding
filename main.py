@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 from Analysis.Separator import Separator
 from Analysis.Analyser import Analyser
@@ -37,8 +39,11 @@ if __name__ == "__main__":
 
         separator = Separator()
         words = separator.map(frame['project'])
-        [print("result: %s\n" % " | ".join(each)) for each in words]
 
         analyser = Analyser()
         tf_idf = analyser.tf_idf(words)
         feature_names = analyser.feature()
+        weights = tf_idf.toarray()
+
+        [print(each) for each in feature_names]
+
