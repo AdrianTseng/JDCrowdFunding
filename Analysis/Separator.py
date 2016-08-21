@@ -29,3 +29,9 @@ class Separator:
             return [word for word in jieba.cut(sentence) if word not in self.stopwords]
 
         return list(map(process, sentences))
+
+    @staticmethod
+    def extract(data, topics=5):
+        from jieba import analyse
+        analyse.set_stop_words(STOPWORDS)
+        return analyse.extract_tags(data, topK=topics, withWeight=False)
