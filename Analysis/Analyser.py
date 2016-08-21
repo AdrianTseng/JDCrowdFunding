@@ -26,3 +26,29 @@ class Analyser:
         cluster = KMeans(n_clusters=self.cluster_numbers)
         cluster.fit(matrix)
         return cluster
+
+    @staticmethod
+    def translation(df, cluster_result):
+        import pandas as pd
+        from .Separator import Separator
+
+        new_df = pd.concat([df, pd.DataFrame(data={
+            'cluster_label': cluster_result.labels_
+        })], axis=1)
+
+        keyword = {}
+        amount = {}
+        for index in range(max(cluster_result.labels_) + 1):
+            group = new_df.loc[new_df['cluster_label'] == index]
+            keys = Separator.extract((','.join(group['project']).lower()), topics=6)
+            keyword[index] = (' '.join(keys)).upper()
+            amount[index] = group.shape[0]
+        keys = [keyword[each] for each in cluster_result.labels_]
+        amounts = [amount[each] for each in cluster_result.labels_]
+
+        new_df = pd.concat([new_df, pd.DataFrame(data={
+            'keywords': keys,
+            'cluster_amount': amounts
+        })], axis=1)
+
+        return  new_df
