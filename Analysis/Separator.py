@@ -1,4 +1,5 @@
 import jieba
+
 from .__init__ import path, USER_DICT, STOPWORDS
 
 
@@ -6,8 +7,10 @@ class Separator:
 
     def __init__(self, parallel=False):
         self.stopwords = open(STOPWORDS, 'r', encoding="utf-8").read().splitlines()
-        extended = [each for each in ['', ' '] if each not in self.stopwords]
-        map(self.stopwords.append, extended)
+        extended = [each for each in ["", " ", "\t"] if each not in self.stopwords]
+        for each in extended:
+            self.stopwords.append(each)
+        self.stopwords = tuple(self.stopwords)
         self.parallel = parallel
 
     def initialization(self):
