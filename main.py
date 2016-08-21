@@ -40,10 +40,13 @@ if __name__ == "__main__":
         separator = Separator()
         words = separator.map(frame['project'])
 
-        analyser = Analyser()
+        analyser = Analyser(cluster_numbers=20)
         tf_idf = analyser.tf_idf(words)
         feature_names = analyser.feature()
-        weights = tf_idf.toarray()
 
-        [print(each) for each in feature_names]
+        cluster = analyser.cluster(tf_idf)
+
+        [print(each) for each in cluster.cluster_centers_]
+
+        print("\n\n\ncluster labels amount: %d" % len(cluster.labels_))
 
