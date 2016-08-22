@@ -48,10 +48,10 @@ if __name__ == "__main__":
 
         cluster = analyser.cluster(tf_idf)
 
-        frame = analyser.translation(df=frame, cluster_result=cluster)
+        cluster_frame = analyser.translation(df=frame, cluster_result=cluster)
 
         if args.output is not None or args.input is not None:
             output_text = path.splitext(args.output if args.output is not None else args.input)
             rst_file = "%s_clustered%s" % (output_text[0], output_text[1])
             print("Save clustered data frame to file: %s" % rst_file)
-            frame.to_csv(rst_file, sep=",", na_rep="NA", encoding=args.encode)
+            cluster_frame.to_csv(rst_file, sep=",", na_rep="NA", encoding=args.encode)
