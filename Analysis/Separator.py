@@ -26,7 +26,7 @@ class Separator:
         self.initialization()
 
         def process(sentence):
-            return [word for word in jieba.cut(sentence) if word not in self.stopwords]
+            return [str(word) for word in jieba.cut(sentence) if word not in self.stopwords]
 
         return list(map(process, sentences))
 
