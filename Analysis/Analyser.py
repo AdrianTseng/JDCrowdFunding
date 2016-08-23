@@ -59,7 +59,7 @@ class Analyser:
                           labels=None, autopct='%.1f', colors=colors)
         ax.legend(loc='best')
         plt.savefig("%s.png" % CLUSTER_IMAGE, format="png", dpi=720)
-        plt.savefig("%s.pdf" % CLUSTER_IMAGE, format="pdf")
+        plt.savefig("%s.svg" % CLUSTER_IMAGE, format="svg")
         plt.show()
 
         return rst

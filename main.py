@@ -35,6 +35,7 @@ if __name__ == "__main__":
         frame = fetcher.grab()
 
     if frame is not None:
+        frame = frame[frame.project.notnull()]
         if args.output is not None and args.input is None:
             print("Save data frame to file: %s" % args.output)
             frame.to_csv(args.output, sep=",", na_rep="NA", encoding=args.encode)
