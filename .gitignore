@@ -206,3 +206,6 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
+*.png
+*.pdf
